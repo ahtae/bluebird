@@ -2,12 +2,13 @@ import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
 import Typical from 'react-typical';
+import PropTypes from 'prop-types';
 
 const styles = (theme) => ({
   ...theme.home,
 });
 
-const home = ({ classes }) => {
+const Home = ({ classes }) => {
   return (
     <div className={classes.container}>
       <Typography variant="h4" className={classes.title}>
@@ -26,4 +27,8 @@ const home = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(home);
+export default withStyles(styles)(Home);
+
+Home.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
