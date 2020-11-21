@@ -4,6 +4,10 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const logger = require('./utils/logger');
 const config = require('./utils/config');
+const postRouter = require('./controllers/post');
+const authRouter = require('./controllers/auth');
+const usersRouter = require('./controllers/users');
+const userRouter = require('./controllers/user');
 
 const app = express();
 
@@ -24,9 +28,14 @@ mongoose
   });
 
 app.use(cors());
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
+
+app.use('/api/users', usersRouter);
+app.use('/api/user', userRouter);
+app.use('/api/posts', postRouter);
+app.use('/api/auth', authRouter);
 
 app.use((err, req, res) => {
   console.error(err);
