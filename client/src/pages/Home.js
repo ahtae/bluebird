@@ -16,7 +16,7 @@ const Home = ({ classes }) => {
           loop={Infinity}
           wrapper="b"
           steps={[
-            ' Make new friends with bluebird',
+            'Make new friends with bluebird',
             6000,
             'Meet new people with bluebird',
             6000,
