@@ -31,15 +31,15 @@ authRouter.post('/login', async (req, res) => {
 
         const token = jwt.sign(userForToken, config.JWT_SECRET);
 
-        res.status(200).send({ token });
+        res.status(200).send({ token, userId: user._id });
       } else {
-        res.status(400).json({ error: 'Wrong email or password!' });
+        res.status(401).json({ credentials: 'Wrong email or password!' });
       }
     } else {
-      res.status(400).json({ error: 'User does not exist!' });
+      res.status(401).json({ credentials: 'User does not exist!' });
     }
   } catch (error) {
-    res.json({ error: 'Something went wrong!' });
+    res.status(500).json({ error: 'Something went wrong!' });
   }
 });
 
@@ -81,10 +81,10 @@ authRouter.post('/signup', async (req, res) => {
 
       const token = jwt.sign(userForToken, config.JWT_SECRET);
 
-      res.status(201).send({ token });
+      res.status(201).send({ token, userId: createdUser._id });
     }
   } catch (error) {
-    res.json({ error: 'Something went wrong!' });
+    res.status(500).json({ error: 'Something went wrong!' });
   }
 });
 
