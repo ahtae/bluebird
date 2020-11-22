@@ -15,6 +15,7 @@ import store from './redux/store';
 import UserProfile from './pages/UserProfile';
 import { ToastProvider } from 'react-toast-notifications';
 import './App.css';
+import React from 'react';
 
 const theme = createMuiTheme(MuiTheme);
 
@@ -25,7 +26,7 @@ const App = () => {
         <ToastProvider
           autoDismiss
           autoDismissTimeout={6000}
-          placement="top-right"
+          placement="bottom-right"
         >
           <Router>
             <LastLocationProvider>
