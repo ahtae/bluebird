@@ -14,13 +14,27 @@ const styles = (theme) => ({
   ...theme.navbar,
 });
 
-const NavBar = ({ lastLocation, classes }) => {
+const NavBar = ({ location, history, lastLocation, classes }) => {
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.user.authenticated);
+  const ui = useSelector((state) => state.ui);
+  const { errors } = ui;
+  const numberOfErrors = Object.keys(errors).length;
 
   useEffect(() => {
-    dispatch(clearErrors());
-  }, [dispatch, lastLocation]);
+    if (numberOfErrors) {
+      dispatch(clearErrors());
+    }
+  }, [dispatch, numberOfErrors, lastLocation]);
+
+  useEffect(() => {
+    if (
+      (location.pathname === '/login' || location.pathname === '/signup') &&
+      authenticated
+    ) {
+      history.push('/dashboard');
+    }
+  }, [authenticated, history, location]);
 
   return (
     <AppBar>
@@ -30,7 +44,7 @@ const NavBar = ({ lastLocation, classes }) => {
           color="inherit"
           className={classes.button}
           component={Link}
-          to="/"
+          to="/login"
         >
           Home
         </Button>
