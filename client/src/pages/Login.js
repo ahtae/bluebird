@@ -16,15 +16,18 @@ const styles = (theme) => ({
 });
 
 const Login = ({ history, classes }) => {
-  const user = useSelector((state) => state.user);
   const UI = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   const { loading, errors } = UI;
 
-  const handleSubmitClick = async (event) => {
+  const clearInputValues = () => {
+    setEmail('');
+    setPassword('');
+  };
+
+  const handleSubmitClick = (event) => {
     event.preventDefault();
 
     const credentials = {
@@ -33,6 +36,7 @@ const Login = ({ history, classes }) => {
     };
 
     dispatch(loginUser(credentials, history));
+    clearInputValues();
   };
 
   const handleEmailChange = (event) => {
@@ -44,7 +48,7 @@ const Login = ({ history, classes }) => {
   };
 
   return (
-    <div>
+    <div className="container">
       <Grid container className={classes.form}>
         <Grid item sm />
         <Grid item sm>
