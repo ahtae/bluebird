@@ -25,18 +25,17 @@ authRouter.post('/login', async (req, res) => {
       if (isCorrectPassword) {
         const userForToken = {
           id: user._id,
-          email: user.email,
           handle: user.handle,
         };
 
         const token = jwt.sign(userForToken, config.JWT_SECRET);
 
-        res.status(200).send({ token, userId: user._id });
+        res.status(200).send({ token, userHandle: user.handle });
       } else {
-        res.status(401).json({ credentials: 'Wrong email or password!' });
+        res.status(400).json({ credentials: 'Wrong email or password!' });
       }
     } else {
-      res.status(401).json({ credentials: 'User does not exist!' });
+      res.status(400).json({ credentials: 'User does not exist!' });
     }
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong!' });
@@ -75,13 +74,12 @@ authRouter.post('/signup', async (req, res) => {
       const createdUser = await User.create(newUser);
       const userForToken = {
         id: createdUser._id,
-        email: createdUser.email,
         handle: createdUser.handle,
       };
 
       const token = jwt.sign(userForToken, config.JWT_SECRET);
 
-      res.status(201).send({ token, userId: createdUser._id });
+      res.status(200).send({ token, userHandle: createdUser.handle });
     }
   } catch (error) {
     res.status(500).json({ error: 'Something went wrong!' });
