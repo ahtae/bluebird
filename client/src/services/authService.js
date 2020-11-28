@@ -8,12 +8,12 @@ const login = async (credentials) => {
   return response;
 };
 
-const signup = async (credentials) => {
+const signUp = async (credentials) => {
   const response = await axios.post(`${baseUrl}/signup`, credentials);
 
   return response;
 };
 
-const authService = { login, signup };
+const authService = { login, signUp };
 
 export default authService;
