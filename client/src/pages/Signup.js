@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser } from '../redux/actions/user';
 import birdCageImage from '../assets/images/bird-cage.png';
@@ -15,7 +15,7 @@ const styles = (theme) => ({
   ...theme.form,
 });
 
-const Signup = ({ history, classes }) => {
+const SignUp = ({ history, classes }) => {
   const [email, setEmail] = useState('');
   const [handle, setHandle] = useState('');
   const [password, setPassword] = useState('');
@@ -149,9 +149,9 @@ const Signup = ({ history, classes }) => {
   );
 };
 
-export default withStyles(styles)(Signup);
+export default withStyles(styles)(SignUp);
 
-Signup.propTypes = {
+SignUp.propTypes = {
   history: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
 };
