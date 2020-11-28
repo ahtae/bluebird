@@ -38,10 +38,7 @@ app.use('/api/posts', postRouter);
 app.use('/api/auth', authRouter);
 
 app.use((err, req, res) => {
-  console.error(err);
-  console.error(err.stack);
-
-  res.status(err.status || 500).send(err.message || 'Internal server error.');
+  res.status(err.status || 500).send(err.message || 'Internal server error!');
 });
 
 module.exports = app;
