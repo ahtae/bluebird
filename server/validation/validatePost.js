@@ -7,7 +7,7 @@ const validatePost = (data) => {
   data.body = validText(data.body) ? data.body : '';
 
   if (Validator.isEmpty(data.body)) {
-    errors.handle = 'You cannot submit an empty post!';
+    errors.body = 'You cannot submit an empty post!';
   }
 
   return {
