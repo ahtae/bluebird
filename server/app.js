@@ -6,7 +6,6 @@ const logger = require('./utils/logger');
 const config = require('./utils/config');
 const postRouter = require('./controllers/post');
 const authRouter = require('./controllers/auth');
-const usersRouter = require('./controllers/users');
 const userRouter = require('./controllers/user');
 
 const app = express();
@@ -32,7 +31,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
-app.use('/api/users', usersRouter);
 app.use('/api/user', userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/auth', authRouter);
