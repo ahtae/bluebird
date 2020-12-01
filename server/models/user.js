@@ -26,10 +26,22 @@ const UserSchema = new mongoose.Schema(
     bio: String,
     website: String,
     location: String,
+    notifications: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Notification',
+      },
+    ],
     posts: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Post',
+      },
+    ],
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Follower',
       },
     ],
   },
