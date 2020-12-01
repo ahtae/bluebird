@@ -21,3 +21,4 @@ export const setAuthenticatedUser = (user) => ({
 export const loadingUser = () => ({
   type: LOADING_USER,
 });
+
