@@ -1,18 +1,21 @@
-import authService from '../../services/authService';
 import {
   loadingUI,
   setErrors,
   clearErrors,
   notLoadingUI,
 } from '../actionCreators/ui';
-import { setAuthenticated, setUnauthenticated } from '../actionCreators/user';
+import {
+  setAuthenticated,
+  setUnauthenticated,
+  setAuthenticatedUser,
+} from '../actionCreators/user';
 import {
   updateProfilePicture,
   updateProfileInformation,
+  getUser,
 } from '../actionCreators/data';
+import authService from '../../services/authService';
 import userService from '../../services/userService';
-import { setAuthenticatedUser } from '../actionCreators/user';
-import { getUser } from '../actionCreators/data';
 
 export const loginUser = (credentials, history) => async (dispatch) => {
   dispatch(loadingUI());
