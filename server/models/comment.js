@@ -1,36 +1,5 @@
 const mongoose = require('mongoose');
 
-const ReplySchema = new mongoose.Schema(
-  {
-    userHandle: {
-      type: String,
-      required: true,
-    },
-    commentId: {
-      type: String,
-    },
-    content: {
-      type: String,
-      required: true,
-    },
-    likes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-    dislikes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-  },
-  {
-    timestamps: { createdAt: true, updatedAt: false },
-  }
-);
-
 const CommentSchema = new mongoose.Schema(
   {
     userHandle: {
@@ -50,13 +19,13 @@ const CommentSchema = new mongoose.Schema(
         ref: 'User',
       },
     ],
-    dislikes: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-    replies: [ReplySchema],
+    likeCount: {
+      type: Number,
+      default: 0,
+    },
+    userImage: {
+      type: String,
+    },
   },
   {
     timestamps: { createdAt: true, updatedAt: false },
