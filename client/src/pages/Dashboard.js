@@ -1,53 +1,38 @@
 import React, { useEffect } from 'react';
 import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Posts from '../components/Posts/Posts';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllPosts } from '../redux/actions/data';
-import Profile from '../components/Profile';
-import PostForm from '../components/PostForm';
-import withStyles from '@material-ui/core/styles/withStyles';
+import { Posts, Profile, PostForm } from '../components';
+import { Loading } from '../pages';
 
-const styles = (theme) => ({
-  dashBoardContainer: {
-    marginLeft: '100px',
-    marginTop: '100px',
-  },
-});
-
-const Dashboard = ({ classes }) => {
+const Dashboard = () => {
+  const dispatch = useDispatch();
   const user = useSelector((state) => state.user.credentials);
   const ui = useSelector((state) => state.ui);
   const posts = useSelector((state) => state.data.posts);
-  const dispatch = useDispatch();
   const { loading } = ui;
 
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
 
-  if (loading || !Object.keys(user).length) {
-    return (
-      <div className="container">
-        <CircularProgress color="secondary" />
-      </div>
-    );
+  if (loading) {
+    return <Loading />;
   }
 
   return (
     <div className="container">
-      <Grid container spacing={6}>
-        <Grid item sm={4} xs={10}>
+      <Grid container spacing={10}>
+        <Grid item sm={4} xs={12}>
           <Profile user={user} />
         </Grid>
-        <Grid item sm={6} xs={12}>
+        <Grid item sm={8} xs={12}>
           <PostForm />
           <Posts posts={posts} />
         </Grid>
       </Grid>
-      <Grid item xs={1}></Grid>
     </div>
   );
 };
 
-export default withStyles(styles)(Dashboard);
+export default Dashboard;
