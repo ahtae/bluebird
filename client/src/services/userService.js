@@ -20,6 +20,24 @@ const updateProfile = async (profileData, config) => {
   return response;
 };
 
-const userService = { getUser, uploadImage, updateProfile };
+const followUser = async (handle, config) => {
+  const response = await axios.post(`${baseUrl}/follow`, { handle }, config);
+
+  return response;
+};
+
+const unfollowUser = async (handle, config) => {
+  const response = await axios.post(`${baseUrl}/unfollow`, { handle }, config);
+
+  return response;
+};
+
+const userService = {
+  getUser,
+  uploadImage,
+  updateProfile,
+  followUser,
+  unfollowUser,
+};
 
 export default userService;
