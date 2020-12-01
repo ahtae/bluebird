@@ -1,6 +1,8 @@
 export const GET_USER = 'GET_USER';
 export const FOLLOW_USER = 'FOLLOW_USER';
 export const UNFOLLOW_USER = 'UNFOLLOW_USER';
+export const UPDATE_PROFILE_PICTURE = 'UPDATE_PROFILE_PICTURE';
+export const UPDATE_PROFILE_INFORMATION = 'UPDATE_PROFILE_INFORMATION';
 export const GET_POSTS = 'GET_POSTS';
 export const GET_POST = 'GET_POST';
 export const CREATE_POST = 'CREATE_POST';
