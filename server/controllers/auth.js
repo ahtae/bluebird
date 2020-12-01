@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../models/user');
+const { User } = require('../models');
 const config = require('../utils/config');
 const validateRegistrationInput = require('../validation/validateRegistrationInput');
 const validateLoginInput = require('../validation/validateLoginInput');
