@@ -6,8 +6,8 @@ const validateProfile = (data) => {
 
   data.website = validText(data.website) ? data.website : '';
 
-  if (Validator.isUrl(data.website)) {
-    errors.error = 'This is not a valid website!';
+  if (Validator.isURL(data.website)) {
+    errors.website = 'This is not a valid website!';
   }
 
   return {
