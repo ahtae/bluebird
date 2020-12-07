@@ -1,6 +1,5 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const getTokenFrom = require('../utils/getTokenFrom');
 const { Notification, User } = require('../models');
 const config = require('../utils/config');
