@@ -18,7 +18,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 import { useToasts } from 'react-toast-notifications';
-import { clearErrors } from '../redux/actionCreators/ui';
+import { clearErrors } from '../../../redux/actionCreators/ui';
 
 const styles = {
   card: {
