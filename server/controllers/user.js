@@ -30,6 +30,7 @@ userRouter.get('/:userHandle', getTokenFrom, async (req, res) => {
               model: 'User',
             },
           })
+          .populate('notifications')
           .execPopulate();
 
         res.status(200).json(user);
@@ -63,7 +64,9 @@ userRouter.post(
               path: 'user',
               model: 'User',
             },
-          });
+          })
+          .populate('notifications');
+
         const posts = await Post.find({ userHandle: user.handle });
         const comments = await Comment.find({ userHandle: user.handle });
 
@@ -131,7 +134,11 @@ userRouter.put('/profile', getTokenFrom, async (req, res) => {
       const keysOfUserDetails = Object.keys(userDetails);
 
       if (user) {
-        await user.populate('posts').populate('followers').execPopulate();
+        await user
+          .populate('posts')
+          .populate('followers')
+          .populate('notifications')
+          .execPopulate();
 
         for (let i = 0; i < keysOfUserDetails.length; i++) {
           const key = keysOfUserDetails[i];
@@ -182,6 +189,7 @@ userRouter.post('/follow', getTokenFrom, async (req, res) => {
               model: 'User',
             },
           })
+          .populate('notifications')
           .execPopulate();
 
         res.status(200).json(user);
@@ -218,7 +226,8 @@ userRouter.post('/unfollow', getTokenFrom, async (req, res) => {
             path: 'user',
             model: 'User',
           },
-        });
+        })
+        .populate('notifications');
 
       if (user) {
         user.followers = user.followers.filter(

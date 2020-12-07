@@ -4,7 +4,7 @@ const getTokenFrom = require('../utils/getTokenFrom');
 const validatePost = require('../validation/validatePost');
 const validateComment = require('../validation/validateComment');
 const config = require('../utils/config');
-const { Post, Comment, User } = require('../models');
+const { Post, Comment, User, Notification } = require('../models');
 
 const postRouter = express.Router();
 
@@ -41,7 +41,13 @@ postRouter.post('/', getTokenFrom, async (req, res) => {
         error: 'Unauthorized!',
       });
     } else {
-      const user = await User.findById(decodedToken.id);
+      const user = await User.findById(decodedToken.id).populate({
+        path: 'followers',
+        populate: {
+          path: 'user',
+          model: 'User',
+        },
+      });
 
       if (user) {
         const post = {
@@ -55,6 +61,21 @@ postRouter.post('/', getTokenFrom, async (req, res) => {
         user.posts = user.posts.concat(createdPost._id);
 
         await user.save();
+
+        const newNotification = {
+          userHandle: user.handle,
+          postId: createdPost._id,
+          message: `${user.handle} has made a new post.`,
+        };
+
+        for (const follower of user.followers) {
+          const userToUpdate = await User.findById(follower.user._id);
+          const notification = await Notification.create(newNotification);
+
+          userToUpdate.notifications.push(notification._id);
+
+          await userToUpdate.save();
+        }
 
         res.status(201).json(createdPost);
       } else {
@@ -132,11 +153,25 @@ postRouter.post('/:postId/like', getTokenFrom, async (req, res) => {
     } else {
       if (decodedToken) {
         const userId = decodedToken.id;
+        const user = await User.findById(userId);
         const post = await Post.findById(postId).populate('comments');
 
         post.likes.push(userId);
         post.likeCount += 1;
 
+        const ownerOfPost = await User.findOne({ handle: post.userHandle });
+
+        const newNotification = {
+          userHandle: ownerOfPost.handle,
+          postId: post._id,
+          message: `${user.handle} has liked your post.`,
+        };
+
+        const notification = await Notification.create(newNotification);
+
+        ownerOfPost.notifications.push(notification._id);
+
+        await ownerOfPost.save();
         await post.save();
 
         res.status(200).json(post);
@@ -194,6 +229,7 @@ postRouter.post('/:postId/comments', getTokenFrom, async (req, res) => {
 
     if (decodedToken) {
       const post = await Post.findById(postId);
+      const postCreator = await User.findOne({ handle: post.userHandle });
 
       const createdComment = await Comment.create({
         userHandle: decodedToken.handle,
@@ -202,8 +238,19 @@ postRouter.post('/:postId/comments', getTokenFrom, async (req, res) => {
         userImage: user.profilePicture,
       });
 
+      const newNotification = {
+        userHandle: post.userHandle,
+        postId: post._id,
+        message: `${user.handle} has commented on your post.`,
+      };
+
+      const notification = await Notification.create(newNotification);
+
+      postCreator.notifications.push(notification._id);
+
       post.comments = [createdComment._id, ...post.comments];
 
+      await postCreator.save();
       await post.save();
 
       res.status(201).json(createdComment);
@@ -266,11 +313,26 @@ postRouter.post(
       } else {
         if (decodedToken) {
           const userId = decodedToken.id;
+          const user = await User.findById(userId);
           const comment = await Comment.findById(commentId);
+          const ownerOfComment = await User.findOne({
+            handle: comment.userHandle,
+          });
 
           comment.likes.push(userId);
           comment.likeCount += 1;
 
+          const newNotification = {
+            userHandle: ownerOfComment.handle,
+            postId: comment.postId,
+            message: `${user.handle} has liked your comment.`,
+          };
+
+          const notification = await Notification.create(newNotification);
+
+          ownerOfComment.notifications.push(notification._id);
+
+          await ownerOfComment.save();
           await comment.save();
 
           res.status(200).json(comment);
