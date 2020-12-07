@@ -7,6 +7,8 @@ import { createAComment } from '../redux/actions/data';
 import Card from '@material-ui/core/Card';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Typography from '@material-ui/core/Typography';
+import { useToasts } from 'react-toast-notifications';
+import { clearErrors } from '../redux/actionCreators/ui';
 
 const styles = (theme) => ({
   ...theme.form,
@@ -28,6 +30,7 @@ const CommentForm = ({ classes, postId }) => {
   const dispatch = useDispatch();
   const ui = useSelector((state) => state.ui);
   const { errors } = ui;
+  const { addToast } = useToasts();
 
   const handleBodyChange = (event) => {
     setBody(event.target.value);
@@ -37,6 +40,20 @@ const CommentForm = ({ classes, postId }) => {
     event.preventDefault();
 
     dispatch(createAComment(postId, { body }));
+
+    if (Object.keys(errors).length) {
+      addToast(`Unsuccessfully created a comment! ${errors.error}`, {
+        appearance: 'error',
+        autoDismiss: true,
+      });
+
+      dispatch(clearErrors());
+    } else {
+      addToast('Successfully created a comment!', {
+        appearance: 'success',
+        autoDismiss: true,
+      });
+    }
   };
 
   return (
