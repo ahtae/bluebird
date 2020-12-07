@@ -5,7 +5,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 
 const CommentButton = () => {
   return (
-    <Tooltip title="Show comments">
+    <Tooltip title="Comments">
       <IconButton color="primary">
         <ChatIcon color="primary" />
       </IconButton>
