@@ -10,7 +10,7 @@ import {
   Home,
   Login,
   NotFound,
-  Notifications,
+  AllNotifications,
   SignUp,
   SinglePost,
   UserProfile,
@@ -52,7 +52,7 @@ const App = () => {
                 <PrivateRoute
                   exact
                   path="/notifications"
-                  component={Notifications}
+                  component={AllNotifications}
                 />
                 <Route component={NotFound} />
               </Switch>
