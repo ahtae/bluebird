@@ -14,7 +14,19 @@ import {
   UNFOLLOW_USER,
   UPDATE_PROFILE_PICTURE,
   UPDATE_PROFILE_INFORMATION,
+  GET_NOTIFICATION,
+  GET_NOTIFICATIONS,
 } from '../actionTypes/data';
+
+export const getNotification = (notification) => ({
+  type: GET_NOTIFICATION,
+  payload: notification,
+});
+
+export const getNotifications = (notifications) => ({
+  type: GET_NOTIFICATIONS,
+  payload: notifications,
+});
 
 export const getUser = (user) => ({
   type: GET_USER,
