@@ -55,13 +55,13 @@ const EditProfile = ({ classes }) => {
           appearance: 'error',
           autoDismiss: true,
         });
+
+        dispatch(clearErrors());
       } else {
         addToast('Successfully updated profile details!', {
           appearance: 'success',
           autoDismiss: true,
         });
-
-        dispatch(clearErrors());
         clearFormDetails();
         setOpenEditDetails(false);
       }
