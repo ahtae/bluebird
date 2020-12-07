@@ -23,6 +23,11 @@ const styles = (theme) => ({
 const NavBar = ({ history, lastLocation, classes }) => {
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.user.authenticated);
+  const notifications = useSelector((state) =>
+    state.user.credentials.notifications.filter(
+      (notification) => !notification.isRead
+    )
+  );
   const token = localStorage.getItem('token');
   const userHandle = localStorage.getItem('userHandle');
 
@@ -91,7 +96,17 @@ const NavBar = ({ history, lastLocation, classes }) => {
               component={Link}
               to="/notifications"
             >
-              <Badge badgeContent={2}>Notifications</Badge>
+              {notifications && notifications.length ? (
+                <Badge
+                  badgeContent={notifications.length}
+                  color="secondary"
+                  max={999}
+                >
+                  Notifications
+                </Badge>
+              ) : (
+                'Notifications'
+              )}
             </Button>
 
             <Button
