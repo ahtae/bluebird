@@ -30,7 +30,10 @@ userRouter.get('/:userHandle', getTokenFrom, async (req, res) => {
               model: 'User',
             },
           })
-          .populate('notifications')
+          .populate({
+            path: 'notifications',
+            options: { sort: { _id: -1 } },
+          })
           .execPopulate();
 
         res.status(200).json(user);
