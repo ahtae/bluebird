@@ -3,18 +3,31 @@ import {
   SET_UNAUTHENTICATED,
   SET_AUTHENTICATED_USER,
 } from '../actionTypes/user';
-import { DELETE_COMMENT, LIKE_POST, UNLIKE_POST } from '../actionTypes/data';
+import {
+  DELETE_COMMENT,
+  LIKE_POST,
+  UNLIKE_POST,
+  READ_NOTIFICATION,
+} from '../actionTypes/data';
 import produce from 'immer';
 
 const initialState = {
   authenticated: false,
-  credentials: {},
+  credentials: { notifications: [] },
   likes: [],
-  notifications: [],
 };
 
 const userReducer = (state = initialState, action) => {
   switch (action.type) {
+    case READ_NOTIFICATION:
+      return produce(state, (draft) => {
+        draft.credentials.notifications = draft.credentials.notifications.map(
+          (notification) =>
+            action.payload.id === notification.id
+              ? action.payload
+              : notification
+        );
+      });
     case SET_AUTHENTICATED:
       return { ...state, authenticated: true };
     case SET_UNAUTHENTICATED:
