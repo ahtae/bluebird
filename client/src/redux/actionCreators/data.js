@@ -14,12 +14,12 @@ import {
   UNFOLLOW_USER,
   UPDATE_PROFILE_PICTURE,
   UPDATE_PROFILE_INFORMATION,
-  GET_NOTIFICATION,
+  READ_NOTIFICATION,
   GET_NOTIFICATIONS,
 } from '../actionTypes/data';
 
-export const getNotification = (notification) => ({
-  type: GET_NOTIFICATION,
+export const readNotification = (notification) => ({
+  type: READ_NOTIFICATION,
   payload: notification,
 });
 

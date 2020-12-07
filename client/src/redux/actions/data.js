@@ -13,9 +13,61 @@ import {
   likeComment,
   followUser,
   unfollowUser,
+  readNotification,
+  getNotifications,
 } from '../actionCreators/data';
 import postService from '../../services/postService';
 import userService from '../../services/userService';
+import notificationService from '../../services/notificationService';
+
+export const readANotification = (notificationId) => async (dispatch) => {
+  dispatch(loadingUI());
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+
+  try {
+    const response = await notificationService.getNotification(
+      notificationId,
+      config
+    );
+    const notification = response.data;
+
+    dispatch(readNotification(notification));
+  } catch (error) {
+    const errors = error.response.data;
+
+    dispatch(setErrors(errors));
+  }
+
+  dispatch(notLoadingUI());
+};
+
+export const getAllNotifications = () => async (dispatch) => {
+  dispatch(loadingUI());
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  };
+
+  try {
+    const response = await notificationService.getNotifications(config);
+    const notifications = response.data;
+
+    dispatch(getNotifications(notifications));
+  } catch (error) {
+    const errors = error.response.data;
+
+    dispatch(setErrors(errors));
+  }
+
+  dispatch(notLoadingUI());
+};
 
 export const getAllPosts = () => async (dispatch) => {
   dispatch(loadingUI());
