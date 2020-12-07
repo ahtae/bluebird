@@ -12,17 +12,6 @@ import { clearErrors } from '../redux/actionCreators/ui';
 
 const styles = (theme) => ({
   ...theme.form,
-  card: {
-    marginTop: 30,
-    marginBottom: 20,
-    padding: 10,
-  },
-  commentForm: {
-    backgroundColor: 'white',
-    padding: 10,
-    marginTop: 30,
-    marginBottom: 20,
-  },
 });
 
 const CommentForm = ({ classes, postId }) => {

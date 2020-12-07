@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -20,21 +21,9 @@ import _ from 'lodash';
 import { useToasts } from 'react-toast-notifications';
 import { clearErrors } from '../../../redux/actionCreators/ui';
 
-const styles = {
-  card: {
-    position: 'relative',
-    display: 'flex',
-    marginBottom: 20,
-    padding: 10,
-  },
-  image: {
-    minWidth: 200,
-  },
-  content: {
-    padding: 25,
-    objectFit: 'cover',
-  },
-};
+const styles = (theme) => ({
+  ...theme.comment,
+});
 
 const Comment = ({ comment, classes }) => {
   const { addToast } = useToasts();
@@ -150,3 +139,8 @@ const Comment = ({ comment, classes }) => {
 };
 
 export default withStyles(styles)(Comment);
+
+Comment.propTypes = {
+  classes: PropTypes.object.isRequired,
+  comment: PropTypes.object.isRequired,
+};

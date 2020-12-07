@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -21,21 +22,9 @@ import UnfoldMoreOutlinedIcon from '@material-ui/icons/UnfoldMoreOutlined';
 import { useToasts } from 'react-toast-notifications';
 import { clearErrors } from '../../../redux/actionCreators/ui';
 
-const styles = {
-  card: {
-    position: 'relative',
-    display: 'flex',
-    marginBottom: 20,
-    padding: 10,
-  },
-  image: {
-    minWidth: 200,
-  },
-  content: {
-    padding: 25,
-    objectFit: 'cover',
-  },
-};
+const styles = (theme) => ({
+  ...theme.post,
+});
 
 const Post = ({ post, classes, history }) => {
   const { addToast } = useToasts();
@@ -167,3 +156,9 @@ const Post = ({ post, classes, history }) => {
 };
 
 export default withStyles(styles)(Post);
+
+Post.propTypes = {
+  post: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePost } from '../redux/actions/data';
@@ -10,13 +9,6 @@ import Post from '../components/Posts/Post/Post';
 import Comments from '../components/Comments/Comments';
 import Loading from './Loading';
 import PropTypes from 'prop-types';
-
-const styles = (theme) => ({
-  dashBoardContainer: {
-    marginLeft: '100px',
-    marginTop: '100px',
-  },
-});
 
 const SinglePost = ({ history }) => {
   const user = useSelector((state) => state.user.credentials);
@@ -53,7 +45,7 @@ const SinglePost = ({ history }) => {
   );
 };
 
-export default withStyles(styles)(SinglePost);
+export default SinglePost;
 
 SinglePost.propTypes = {
   history: PropTypes.object.isRequired,

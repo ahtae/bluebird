@@ -1,4 +1,5 @@
 import React, { useEffect, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -124,3 +125,9 @@ const NavBar = ({ history, lastLocation, classes }) => {
 };
 
 export default withLastLocation(withStyles(styles)(NavBar));
+
+NavBar.propTypes = {
+  lastLocation: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+};

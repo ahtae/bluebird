@@ -48,6 +48,11 @@ const theme = {
     progress: {
       position: 'absolute',
     },
+    card: {
+      marginTop: 30,
+      marginBottom: 20,
+      padding: 10,
+    },
   },
   navbar: {
     logo: {
@@ -80,6 +85,132 @@ const theme = {
     },
     icon: {
       fontSize: '300px',
+    },
+  },
+  profile: {
+    paper: {
+      padding: 20,
+      marginTop: 30,
+    },
+    profile: {
+      '& .image-wrapper': {
+        textAlign: 'center',
+        position: 'relative',
+        '& button': {
+          position: 'absolute',
+          top: '80%',
+          left: '70%',
+        },
+      },
+      '& .profile-image': {
+        width: 200,
+        height: 200,
+        objectFit: 'cover',
+        maxWidth: '100%',
+        borderRadius: '50%',
+      },
+      '& .profile-details': {
+        textAlign: 'center',
+        '& span, svg': {
+          verticalAlign: 'middle',
+        },
+        '& a': {
+          color: '#3e3e3e',
+        },
+      },
+      '& hr': {
+        border: 'none',
+        margin: '0 0 10px 0',
+      },
+      '& svg.button': {
+        '&:hover': {
+          cursor: 'pointer',
+        },
+      },
+    },
+    buttons: {
+      textAlign: 'center',
+      '& a': {
+        margin: '20px 10px',
+      },
+    },
+  },
+  post: {
+    card: {
+      position: 'relative',
+      display: 'flex',
+      marginBottom: 20,
+      padding: 10,
+    },
+    image: {
+      minWidth: 200,
+    },
+    content: {
+      padding: 25,
+      objectFit: 'cover',
+    },
+  },
+  notifications: {
+    heading: { fontSize: '20px', textAlign: 'center', padding: '20px' },
+    filterSelection: { paddingTop: '20px', paddingBottom: '20px' },
+    container: {
+      margin: '80px auto 0 auto',
+      maxWidth: '1200px',
+      width: '70%',
+    },
+  },
+  notification: {
+    icon: { marginRight: 10 },
+    container: {
+      display: 'flex',
+      flexWrap: 'nowrap',
+      justifyContent: 'flex-start',
+      alignItems: 'space-between',
+      padding: '20px',
+    },
+    message: {
+      display: 'flex',
+      flexWrap: 'nowrap',
+      justifyContent: 'baseline',
+      alignItems: 'center',
+      width: '65%',
+      paddingRight: '20px',
+    },
+    isRead: { paddingLeft: '165px' },
+    isNotRead: { paddingLeft: '70px' },
+  },
+  followersList: {
+    paper: {
+      padding: 20,
+      marginTop: 30,
+    },
+    title: {
+      textDecoration: 'underline',
+    },
+  },
+  followers: {
+    body: { paddingTop: 10 },
+    followersContainer: { display: 'flex', flexWrap: 'wrap' },
+  },
+  follower: {
+    image: {
+      width: 80,
+      height: 80,
+    },
+  },
+  comment: {
+    card: {
+      position: 'relative',
+      display: 'flex',
+      marginBottom: 20,
+      padding: 10,
+    },
+    image: {
+      minWidth: 200,
+    },
+    content: {
+      padding: 25,
+      objectFit: 'cover',
     },
   },
 };

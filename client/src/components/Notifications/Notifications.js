@@ -10,13 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 
 const styles = (theme) => ({
-  heading: { fontSize: '20px', textAlign: 'center', padding: '20px' },
-  filterSelection: { paddingTop: '20px', paddingBottom: '20px' },
-  container: {
-    margin: '80px auto 0 auto',
-    maxWidth: '1200px',
-    width: '70%',
-  },
+  ...theme.notifications,
 });
 
 const Notifications = ({ classes }) => {

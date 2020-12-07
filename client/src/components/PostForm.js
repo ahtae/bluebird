@@ -13,17 +13,6 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const styles = (theme) => ({
   ...theme.form,
-  card: {
-    marginTop: 30,
-    marginBottom: 20,
-    padding: 10,
-  },
-  postForm: {
-    backgroundColor: 'white',
-    padding: 10,
-    marginTop: 30,
-    marginBottom: 20,
-  },
 });
 
 const PostForm = ({ classes }) => {

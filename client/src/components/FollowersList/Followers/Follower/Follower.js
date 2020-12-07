@@ -5,10 +5,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 const styles = (theme) => ({
-  image: {
-    width: 80,
-    height: 80,
-  },
+  ...theme.follower,
 });
 
 const Follower = ({ classes, follower }) => {

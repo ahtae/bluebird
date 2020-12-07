@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 import Follower from './Follower/Follower';
 
 const styles = (theme) => ({
-  body: { paddingTop: 10 },
-  followersContainer: { display: 'flex', flexWrap: 'wrap' },
+  ...theme.followers,
 });
 
 const Followers = ({ classes, followers }) => {

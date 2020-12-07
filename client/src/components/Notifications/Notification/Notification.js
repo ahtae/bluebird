@@ -13,24 +13,7 @@ import { useSelector } from 'react-redux';
 import { clearErrors } from '../../../redux/actionCreators/ui';
 
 const styles = (theme) => ({
-  icon: { marginRight: 10 },
-  container: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    justifyContent: 'flex-start',
-    alignItems: 'space-between',
-    padding: '20px',
-  },
-  message: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    justifyContent: 'baseline',
-    alignItems: 'center',
-    width: '65%',
-    paddingRight: '20px',
-  },
-  isRead: { paddingLeft: '165px' },
-  isNotRead: { paddingLeft: '70px' },
+  ...theme.notification,
 });
 
 const Notification = ({ classes, notification }) => {

@@ -7,13 +7,7 @@ import { useSelector } from 'react-redux';
 import Followers from './Followers/Followers';
 
 const styles = (theme) => ({
-  paper: {
-    padding: 20,
-    marginTop: 30,
-  },
-  title: {
-    textDecoration: 'underline',
-  },
+  ...theme.followersList,
 });
 
 const FollowersList = ({ classes }) => {
