@@ -132,7 +132,7 @@ const Comment = ({ comment, classes }) => {
           >
             {userHandle}
           </Typography>
-          <DeleteButton handleDeleteClick={handleDeleteClick} />
+          <DeleteButton handleDeleteClick={handleDeleteClick} type="comment" />
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>

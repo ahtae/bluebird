@@ -140,7 +140,7 @@ const Post = ({ post, classes, history }) => {
           {userHandle}
         </Typography>
         {user.handle === userHandle ? (
-          <DeleteButton handleDeleteClick={handleDeleteClick} />
+          <DeleteButton handleDeleteClick={handleDeleteClick} type="post" />
         ) : null}
         <Typography variant="body2" color="textSecondary">
           {dayjs(createdAt).fromNow()}
