@@ -6,33 +6,29 @@ const config = require('../utils/config');
 
 const notificationRouter = express.Router();
 
-notificationRouter.get(
-  '/notifications/:notificationId',
-  getTokenFrom,
-  async (req, res) => {
-    try {
-      const decodedToken = jwt.verify(req.token, config.JWT_SECRET);
+notificationRouter.get(':notificationId', getTokenFrom, async (req, res) => {
+  try {
+    const decodedToken = jwt.verify(req.token, config.JWT_SECRET);
 
-      if (!req.token || !decodedToken.id) {
-        return res.status(401).json({
-          error: 'Unauthorized!',
-        });
-      } else {
-        const { notificationId } = req.params;
-        const notification = await Notification.findById(notificationId);
+    if (!req.token || !decodedToken.id) {
+      return res.status(401).json({
+        error: 'Unauthorized!',
+      });
+    } else {
+      const { notificationId } = req.params;
+      const notification = await Notification.findById(notificationId);
 
-        notification.isRead = true;
-        await notification.save();
+      notification.isRead = true;
+      await notification.save();
 
-        res.status(200).json(notification);
-      }
-    } catch (error) {
-      res.status(500).json({ error: 'Something went wrong!' });
+      res.status(200).json(notification);
     }
+  } catch (error) {
+    res.status(500).json({ error: 'Something went wrong!' });
   }
-);
+});
 
-notificationRouter.get('/notifications', getTokenFrom, async (req, res) => {
+notificationRouter.get('/', getTokenFrom, async (req, res) => {
   try {
     const decodedToken = jwt.verify(req.token, config.JWT_SECRET);
 
