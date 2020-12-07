@@ -22,7 +22,7 @@ const FollowersList = ({ classes }) => {
 
   return (
     <Paper className={classes.paper}>
-      <Typography variant="h5" style={styles.title}>
+      <Typography variant="h5" className={styles.title}>
         Followers
       </Typography>
       <Followers followers={followers} />
