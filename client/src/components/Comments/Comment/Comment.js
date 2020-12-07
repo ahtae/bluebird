@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Paper from '@material-ui/core/Paper';
-import LikeButton from '../../LikeButton';
-import DeleteButton from '../../DeleteButton';
+import LikeButton from '../../Buttons/LikeButton';
+import DeleteButton from '../../Buttons/DeleteButton';
 import {
   likeAComment,
   unlikeAComment,

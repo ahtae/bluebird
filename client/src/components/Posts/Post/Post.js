@@ -8,9 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import LikeButton from '../../LikeButton';
-import CommentButton from '../../CommentButton';
-import DeleteButton from '../../DeleteButton';
+import LikeButton from '../../Buttons/LikeButton';
+import CommentButton from '../../Buttons/CommentButton';
+import DeleteButton from '../../Buttons/DeleteButton';
 import {
   likeAPost,
   unlikeAPost,

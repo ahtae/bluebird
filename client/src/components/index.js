@@ -1,5 +1,5 @@
 import NavBar from './NavBar';
-import PrivateRoute from './PrivateRoute';
+import PrivateRoute from './Routes/PrivateRoute';
 import Posts from './Posts/Posts';
 import Profile from './Profile';
 import PostForm from './PostForm';
