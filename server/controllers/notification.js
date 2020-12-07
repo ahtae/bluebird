@@ -6,7 +6,7 @@ const config = require('../utils/config');
 
 const notificationRouter = express.Router();
 
-notificationRouter.get(':notificationId', getTokenFrom, async (req, res) => {
+notificationRouter.get('/:notificationId', getTokenFrom, async (req, res) => {
   try {
     const decodedToken = jwt.verify(req.token, config.JWT_SECRET);
 
