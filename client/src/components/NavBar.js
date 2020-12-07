@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -9,32 +9,39 @@ import { useDispatch } from 'react-redux';
 import { clearErrors } from '../redux/actionCreators/ui';
 import { withLastLocation } from 'react-router-last-location';
 import { useSelector } from 'react-redux';
+import {
+  setAuthenticatedUserInformation,
+  logOutUser,
+} from '../../src/redux/actions/user';
+import { setAuthenticated } from '../../src/redux/actionCreators/user';
+import Badge from '@material-ui/core/Badge';
 
 const styles = (theme) => ({
   ...theme.navbar,
 });
 
-const NavBar = ({ location, history, lastLocation, classes }) => {
+const NavBar = ({ history, lastLocation, classes }) => {
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.user.authenticated);
-  const ui = useSelector((state) => state.ui);
-  const { errors } = ui;
-  const numberOfErrors = Object.keys(errors).length;
+  const token = localStorage.getItem('token');
+  const userHandle = localStorage.getItem('userHandle');
 
   useEffect(() => {
-    if (numberOfErrors) {
-      dispatch(clearErrors());
-    }
-  }, [dispatch, numberOfErrors, lastLocation]);
+    if (token) {
+      dispatch(setAuthenticatedUserInformation(userHandle));
+      dispatch(setAuthenticated());
 
-  useEffect(() => {
-    if (
-      (location.pathname === '/login' || location.pathname === '/signup') &&
-      authenticated
-    ) {
       history.push('/dashboard');
     }
-  }, [authenticated, history, location]);
+  }, [dispatch, history, token, userHandle]);
+
+  useEffect(() => {
+    dispatch(clearErrors());
+  }, [lastLocation]);
+
+  const handleLogOutClick = () => {
+    dispatch(logOutUser(history));
+  };
 
   return (
     <AppBar>
@@ -44,12 +51,12 @@ const NavBar = ({ location, history, lastLocation, classes }) => {
           color="inherit"
           className={classes.button}
           component={Link}
-          to="/login"
+          to="/"
         >
           Home
         </Button>
         {!authenticated && (
-          <React.Fragment>
+          <Fragment>
             <Button
               color="inherit"
               className={classes.button}
@@ -65,18 +72,36 @@ const NavBar = ({ location, history, lastLocation, classes }) => {
               to="/signup"
             >
               Sign up
-            </Button>{' '}
-          </React.Fragment>
+            </Button>
+          </Fragment>
         )}
         {authenticated && (
-          <Button
-            color="inherit"
-            className={classes.button}
-            component={Link}
-            to="/dashboard"
-          >
-            Dashboard
-          </Button>
+          <Fragment>
+            <Button
+              color="inherit"
+              className={classes.button}
+              component={Link}
+              to="/dashboard"
+            >
+              Dashboard
+            </Button>
+            <Button
+              color="inherit"
+              className={classes.button}
+              component={Link}
+              to="/notifications"
+            >
+              <Badge badgeContent={2}>Notifications</Badge>
+            </Button>
+
+            <Button
+              variant="contained"
+              color="secondary"
+              onClick={handleLogOutClick}
+            >
+              Log out
+            </Button>
+          </Fragment>
         )}
       </Toolbar>
     </AppBar>
