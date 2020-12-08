@@ -2,6 +2,8 @@
 
 bluebird is a social networking website that allows people to meet new people and form connections. It was built using the MERN stack.
 
+Link to the deployed application: https://thawing-eyrie-72166.herokuapp.com/
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
