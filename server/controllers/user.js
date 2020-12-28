@@ -118,12 +118,6 @@ userRouter.post(
 
 userRouter.put('/profile', getTokenFrom, async (req, res) => {
   try {
-    const { errors, isValid } = validateProfile(req.body);
-
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
-
     const userDetails = cleanUserDetails(req.body);
     const decodedToken = jwt.verify(req.token, config.JWT_SECRET);
 
