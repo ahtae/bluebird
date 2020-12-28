@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8000/api/user';
+const baseUrl = '/api/user';
 
 const getUser = async (userHandle, config) => {
   const response = await axios.get(`${baseUrl}/${userHandle}`, config);

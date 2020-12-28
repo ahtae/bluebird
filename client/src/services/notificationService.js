@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8000/api/notifications';
+const baseUrl = '/api/notifications';
 
 const getNotifications = async (credentials) => {
   const response = await axios.get(`${baseUrl}`, credentials);
