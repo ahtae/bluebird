@@ -4,6 +4,9 @@ bluebird is a social networking website that allows people to meet new people an
 
 [Click here to go to the deployed application](https://thawing-eyrie-72166.herokuapp.com/)
 
+* Email: zoidberg@gmail.com
+* Password: zoidberg
+
 ## Features
 - Has user authentication.
 - Responsive on tablet, mobile, and desktop devices.
