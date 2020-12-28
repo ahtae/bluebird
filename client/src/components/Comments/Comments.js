@@ -1,5 +1,5 @@
 import React from 'react';
-import Comment from './Comment/Comment';
+import Comment from './comment/Comment';
 import PropTypes from 'prop-types';
 
 const Comments = ({ comments }) => {

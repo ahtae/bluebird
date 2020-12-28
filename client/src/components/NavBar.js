@@ -16,12 +16,14 @@ import {
 } from '../../src/redux/actions/user';
 import { setAuthenticated } from '../../src/redux/actionCreators/user';
 import Badge from '@material-ui/core/Badge';
+import { useLocation } from 'react-router-dom'
 
 const styles = (theme) => ({
   ...theme.navbar,
 });
 
-const NavBar = ({ history, lastLocation, classes }) => {
+const NavBar = ({ history, classes }) => {
+  const location = useLocation();
   const dispatch = useDispatch();
   const authenticated = useSelector((state) => state.user.authenticated);
   const notifications = useSelector((state) =>
@@ -43,7 +45,7 @@ const NavBar = ({ history, lastLocation, classes }) => {
 
   useEffect(() => {
     dispatch(clearErrors());
-  }, [lastLocation]);
+  }, [location.pathname]);
 
   const handleLogOutClick = () => {
     dispatch(logOutUser(history));
@@ -127,7 +129,6 @@ const NavBar = ({ history, lastLocation, classes }) => {
 export default withLastLocation(withStyles(styles)(NavBar));
 
 NavBar.propTypes = {
-  lastLocation: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };

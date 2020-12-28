@@ -76,23 +76,6 @@ export const logOutUser = (history) => async (dispatch) => {
   history.push('/');
 };
 
-// export const getAuthenticatedUserInformation = (userId) => async (dispatch) => {
-//   dispatch(loadingUI());
-
-//   try {
-//     const user = await usersService.getUser(userId, config);
-
-//     // dispatch(getAuthenticatedUser(user));
-//     dispatch(setUser(user));
-//   } catch (error) {
-//     const errors = error.response.data;
-
-//     dispatch(setErrors(errors));
-//   }
-
-//   dispatch(notLoadingUI());
-// };
-
 export const uploadProfilePicture = (formData) => async (dispatch) => {
   dispatch(loadingUI());
 

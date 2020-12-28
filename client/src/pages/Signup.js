@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -10,12 +10,15 @@ import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { signupUser } from '../redux/actions/user';
 import birdCageImage from '../assets/images/bird-cage.png';
+import { withLastLocation } from 'react-router-last-location';
+import { useLocation } from 'react-router-dom';
 
 const styles = (theme) => ({
   ...theme.form,
 });
 
-const SignUp = ({ history, classes }) => {
+const SignUp = ({ lastLocation, history, classes }) => {
+  const location = useLocation();
   const [email, setEmail] = useState('');
   const [handle, setHandle] = useState('');
   const [password, setPassword] = useState('');
@@ -42,7 +45,6 @@ const SignUp = ({ history, classes }) => {
     };
 
     dispatch(signupUser(credentials, history));
-    clearInputValues();
   };
 
   const handleEmailChange = (event) => {
@@ -60,6 +62,10 @@ const SignUp = ({ history, classes }) => {
   const handleConfirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
   };
+
+  useEffect(() => {
+    clearInputValues();
+  }, [location.pathname]);
 
   return (
     <div className="container">
@@ -149,7 +155,7 @@ const SignUp = ({ history, classes }) => {
   );
 };
 
-export default withStyles(styles)(SignUp);
+export default withLastLocation(withStyles(styles)(SignUp));
 
 SignUp.propTypes = {
   history: PropTypes.object.isRequired,

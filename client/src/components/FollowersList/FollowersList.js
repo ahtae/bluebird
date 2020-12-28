@@ -1,31 +1,34 @@
 import React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-import Paper from '@material-ui/core/Paper';
-import { useSelector } from 'react-redux';
-import Followers from './Followers/Followers';
+import Follower from './followers/follower/Follower';
 
 const styles = (theme) => ({
-  ...theme.followersList,
+  ...theme.followers,
 });
 
-const FollowersList = ({ classes }) => {
-  const user = useSelector((state) => state.data.user);
-  const { followers } = user;
+const Followers = ({ classes, followers }) => {
+  if (!followers.length) {
+    return (
+      <Typography variant="body2" className={classes.body}>
+        No followers yet!
+      </Typography>
+    );
+  }
 
   return (
-    <Paper className={classes.paper}>
-      <Typography variant="h5" className={styles.title}>
-        Followers
-      </Typography>
-      <Followers followers={followers} />
-    </Paper>
+    <div className={classes.followersContainer}>
+      {followers.map((follower) => (
+        <Follower key={follower.user.id} follower={follower.user} />
+      ))}
+    </div>
   );
 };
 
-export default withStyles(styles)(FollowersList);
+export default withStyles(styles)(Followers);
 
-FollowersList.propTypes = {
+Followers.propTypes = {
   classes: PropTypes.object.isRequired,
+  followers: PropTypes.object.isRequired,
 };

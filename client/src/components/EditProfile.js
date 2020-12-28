@@ -173,3 +173,4 @@ export default withStyles(styles)(EditProfile);
 EditProfile.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+

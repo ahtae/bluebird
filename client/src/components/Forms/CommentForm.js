@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Button from '@material-ui/core/Button';
 import { useSelector, useDispatch } from 'react-redux';
-import { createAComment } from '../redux/actions/data';
+import { createAComment } from '../../redux/actions/data';
 import Card from '@material-ui/core/Card';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import Typography from '@material-ui/core/Typography';
 import { useToasts } from 'react-toast-notifications';
-import { clearErrors } from '../redux/actionCreators/ui';
+import { clearErrors } from '../../redux/actionCreators/ui';
 
 const styles = (theme) => ({
   ...theme.form,

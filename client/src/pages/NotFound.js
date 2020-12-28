@@ -9,7 +9,7 @@ const styles = (theme) => ({
 
 const NotFound = ({ classes }) => {
   return (
-    <div id="container">
+    <div className={classes.container}>
       <SentimentVeryDissatisfiedIcon color="primary" className={classes.icon} />
       <Typography color="primary" variant="h3" className={classes.pageTitle}>
         404

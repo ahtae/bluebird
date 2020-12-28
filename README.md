@@ -2,9 +2,22 @@
 
 bluebird is a social networking website that allows people to meet new people and form connections. It was built using the MERN stack.
 
-Link to the deployed application: https://thawing-eyrie-72166.herokuapp.com/
+[Click here to go to the deployed application](https://thawing-eyrie-72166.herokuapp.com/)
 
-## Getting Started
+## Features
+- Has user authentication.
+- Responsive on tablet, mobile, and desktop devices.
+- Users can comment, like posts, and delete their comments.
+- Users can make posts.
+- Users receive notifications if their post is commented on or liked.
+- Users can filter the notifications.
+- Users can upload a profile picture and update their profile.
+- Provide Toast notifications when liking, removing a comment and post, updating profile, updating profile picture, and creating a post.
+
+<img src="./screenshots/1.gif" width="900" height="500" alt="bluebird" />
+<img src="./screenshots/2.gif" width="900" height="500" alt="bluebird" />
+<img src="./screenshots/3.gif" width="900" height="500" alt="bluebird" />
+<img src="./screenshots/4.gif" width="900" height="500" alt="bluebird" />
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -18,13 +31,11 @@ These instructions will get you a copy of the project up and running on your loc
 To get acclimated, follow the steps below:
 
 1. Fork and clone this repository.
-
-## Running the tests
-
-- To run the automated tests for this system, use the following:
-```
-npm run test
-```
+2. Open a terminal and run npm install.
+3. Create a free account on Cloudinary and create a database on MONGODB.
+3. Create a file called .env and provide your environment variables for PORT, JWT_SECRET, MONGODB_URI, CLOUDINARY_CLOUD_NAME, CLOUDINARY_CLOUD, CLOUDINARY_KEY, CLOUDINARY_SECRET, and NODE_ENV.
+4. Open a terminal and run npm run start to run the server.
+4. Open a terminal and run cd client and npm run start to run the client.
 
 ## Built With
 
@@ -35,6 +46,10 @@ npm run test
 * [React-Router](https://reacttraining.com/react-router/) - The standard routing library for React that allows navigation without refreshing the page.
 * [ESlint](https://eslint.org/) - The tool used to maintain code quality.
 * [Prettier](https://prettier.io/) - The tool used to format code.
+* [Mongoose](https://mongoosejs.com) - The MongoDB object modeling used.
+* [MongoDB](https://www.mongodb.com/) - The database used.
+* [React](https://reactjs.org) - The JavaScript framework used for building the user interface.
+* [React Toast Notifications](https://github.com/jossmac/react-toast-notifications) - The notification system used.
 
 ## Versioning
 

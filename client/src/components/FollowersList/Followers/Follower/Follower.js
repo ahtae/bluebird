@@ -10,7 +10,7 @@ const styles = (theme) => ({
 
 const Follower = ({ classes, follower }) => {
   return (
-    <div>
+    <div className={classes.followerContainer}>
       <Link to={`${follower.handle}`}>
         <div>
           <CardMedia
@@ -18,8 +18,8 @@ const Follower = ({ classes, follower }) => {
             title="Follower Image"
             className={classes.image}
           />
+          <span>{follower.handle}</span>
         </div>
-        <p>{follower.handle}</p>
       </Link>
     </div>
   );

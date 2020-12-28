@@ -8,9 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import LikeButton from '../../Buttons/LikeButton';
-import CommentButton from '../../Buttons/CommentButton';
-import DeleteButton from '../../Buttons/DeleteButton';
+import LikeButton from '../../buttons/LikeButton';
+import CommentButton from '../../buttons/CommentButton';
+import DeleteButton from '../../buttons/DeleteButton';
 import {
   likeAPost,
   unlikeAPost,
@@ -128,9 +128,9 @@ const Post = ({ post, classes, history }) => {
         >
           {userHandle}
         </Typography>
-        {user.handle === userHandle ? (
+        {user.handle === userHandle && (
           <DeleteButton handleDeleteClick={handleDeleteClick} type="post" />
-        ) : null}
+        )}
         <Typography variant="body2" color="textSecondary">
           {dayjs(createdAt).fromNow()}
         </Typography>
@@ -162,3 +162,4 @@ Post.propTypes = {
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
+

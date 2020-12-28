@@ -5,10 +5,10 @@ import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
-import { createAPost } from '../redux/actions/data';
+import { createAPost } from '../../redux/actions/data';
 import Card from '@material-ui/core/Card';
 import { useToasts } from 'react-toast-notifications';
-import { clearErrors } from '../redux/actionCreators/ui';
+import { clearErrors } from '../../redux/actionCreators/ui';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 
 const styles = (theme) => ({

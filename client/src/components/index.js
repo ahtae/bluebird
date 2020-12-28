@@ -1,10 +1,10 @@
 import NavBar from './NavBar';
-import PrivateRoute from './Routes/PrivateRoute';
-import Posts from './Posts/Posts';
+import PrivateRoute from './routes/PrivateRoute';
+import Posts from './posts/Posts';
 import Profile from './Profile';
-import PostForm from './PostForm';
-import FollowersList from './FollowersList/FollowersList';
-import Notifications from './Notifications/Notifications';
+import PostForm from './forms/PostForm';
+import FollowersList from './followersList/FollowersList';
+import Notifications from './notifications/Notifications';
 
 export { NavBar };
 export { PrivateRoute };

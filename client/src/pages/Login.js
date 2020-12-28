@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -10,12 +10,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/actions/user';
 import PropTypes from 'prop-types';
 import birdCageImage from '../assets/images/bird-cage.png';
+import { useLocation } from 'react-router-dom'
 
 const styles = (theme) => ({
   ...theme.form,
 });
 
 const Login = ({ history, classes }) => {
+  const location = useLocation();
   const UI = useSelector((state) => state.ui);
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -36,7 +38,6 @@ const Login = ({ history, classes }) => {
     };
 
     dispatch(loginUser(credentials, history));
-    clearInputValues();
   };
 
   const handleEmailChange = (event) => {
@@ -46,6 +47,11 @@ const Login = ({ history, classes }) => {
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+
+  useEffect(() => {
+    clearInputValues()
+  }, [location.pathname]);
+
 
   return (
     <div className="container">

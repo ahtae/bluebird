@@ -9,8 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import Paper from '@material-ui/core/Paper';
-import LikeButton from '../../Buttons/LikeButton';
-import DeleteButton from '../../Buttons/DeleteButton';
+import LikeButton from '../../buttons/LikeButton';
+import DeleteButton from '../../buttons/DeleteButton';
 import {
   likeAComment,
   unlikeAComment,
@@ -121,7 +121,12 @@ const Comment = ({ comment, classes }) => {
           >
             {userHandle}
           </Typography>
-          <DeleteButton handleDeleteClick={handleDeleteClick} type="comment" />
+          {user.handle === userHandle && (
+            <DeleteButton
+              handleDeleteClick={handleDeleteClick}
+              type="comment"
+            />
+          )}
           <Typography variant="body2" color="textSecondary">
             {dayjs(createdAt).fromNow()}
           </Typography>
@@ -144,3 +149,4 @@ Comment.propTypes = {
   classes: PropTypes.object.isRequired,
   comment: PropTypes.object.isRequired,
 };
+

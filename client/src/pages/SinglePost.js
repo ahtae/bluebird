@@ -3,10 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSinglePost } from '../redux/actions/data';
 import Profile from '../components/Profile';
-import CommentForm from '../components/CommentForm';
+import CommentForm from '../components/forms/CommentForm';
 import { useParams } from 'react-router-dom';
-import Post from '../components/Posts/Post/Post';
-import Comments from '../components/Comments/Comments';
+import Post from '../components/posts/Post/Post';
+import Comments from '../components/comments/Comments';
 import Loading from './Loading';
 import PropTypes from 'prop-types';
 
