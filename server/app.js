@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const logger = require('./utils/logger');
 const config = require('./utils/config');
+const path = require('path');
 const {
   postRouter,
   authRouter,
@@ -34,13 +35,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'));
 
+if (config.NODE_ENV === 'PRODUCTION') {
+  app.use(express.static(path.join(__dirname, '..', 'client/build')));
+}
+
 app.use('/api/notifications', notificationRouter);
 app.use('/api/user', userRouter);
 app.use('/api/posts', postRouter);
 app.use('/api/auth', authRouter);
 
-app.use((err, req, res) => {
-  res.status(err.status || 500).send(err.message || 'Internal server error!');
+app.get('*', (req, res) => {
+  res.redirect('/');
 });
 
 module.exports = app;
