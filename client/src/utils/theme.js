@@ -79,12 +79,15 @@ const theme = {
     },
   },
   notFound: {
+    container: {
+      textAlign: 'center',
+    },
     pageTitle: {
       margin: '10px auto 10px auto',
-      textAlign: 'center',
     },
     icon: {
       fontSize: '300px',
+      marginTop: '100px',
     },
   },
   profile: {
@@ -196,6 +199,11 @@ const theme = {
     image: {
       width: 80,
       height: 80,
+    },
+    followerContainer: {
+      marginRight: 10,
+      marginTop: 10,
+      marginBottom: 10,
     },
   },
   comment: {
